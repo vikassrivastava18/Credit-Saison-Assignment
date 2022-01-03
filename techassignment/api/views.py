@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Searched
 from django.views.decorators.csrf import csrf_exempt
-# import request
+import request as req
 
 
 def index(request):
@@ -19,12 +19,15 @@ def search(request, card_id):
     # Add the searched card in db if it's valid
     if request.method == 'POST':
         try:
-            card = Searched.objects.create(card_number=card_id)
-            card_details = request.get('https://lookup.binlist.net/'+ str(card_id))
-            print("card details", card_details)
+            # Create an entry in Database for the Card
+            Searched.objects.create(card_number=card_id)
+            # Get the Card details
+            card_details = req.get('https://lookup.binlist.net/'+ str(card_id))
+
             return JsonResponse({
-                "details": card_details.jsonify()
+                "details": card_details
             }, status=201)
+
         # Validation error from db
         except ValidationError:
             return JsonResponse({
@@ -41,5 +44,5 @@ def statistics(request):
                                                              oldest = Max('time_stamp')).order_by('-dcount')
 
     return JsonResponse({
-        "result": result.jsonify()
+        "result": result
     }, status=200)

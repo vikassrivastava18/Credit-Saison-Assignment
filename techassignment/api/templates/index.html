@@ -3,13 +3,14 @@
 
 {% block body %}
 
-    <form>
-        <label for="cardDetails" class="form-label">Enter the card number</label>
-        <input type="text" class="form-control" id="cardDetails"> <br>
-        <input type="submit" class="btn btn-primary" value="search">
+    <form id="searchForm">
+        <label for="cardInput" class="form-label">Enter the card number</label>
+        <input type="text" class="form-control" id="cardInput"> <br>
+        <input type="submit" class="btn btn-primary" value="search" id="searchBtn">
     </form>
+
 {% endblock %}
 
 {% block script %}
-
+    <script src="{% static 'search.js' %}"></script>
 {% endblock %}
