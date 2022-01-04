@@ -41,7 +41,7 @@ def statistics(request):
     # Group By the card numbers and add latest, oldest timestamp
     result = Searched.objects.values('card_number').annotate(card_count=Count('card_number'),
                                                              latest=Min('time_stamp'),
-                                                             oldest = Max('time_stamp')).order_by('-carddcount')
+                                                             oldest = Max('time_stamp')).order_by('-card_count')
 
     return JsonResponse({
         "result": result
