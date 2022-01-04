@@ -56,7 +56,6 @@ def statistics(request):
     result = Searched.objects.values('card_number').annotate(card_count=Count('card_number'),
                                                              latest=Min('time_stamp'),
                                                              oldest=Max('time_stamp')).order_by('-card_count')
-
     result_json = []
     for r in result:
         result_json.append({r['card_number']: [r['card_count'], r['latest'], r['oldest']]})
@@ -65,3 +64,4 @@ def statistics(request):
     return JsonResponse({
         "result": result_json
     }, status=200)
+
