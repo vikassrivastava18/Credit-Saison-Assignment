@@ -46,9 +46,8 @@ function getStats() {
                 document.querySelector('#content').innerHTML += `<p><b>Card Number:</b> ${c},
                                                                 <b>Hits:</b> ${data[data_obj][d][c][0]},
                                                                 <b>Latest Timestamp:</b> ${data[data_obj][d][c][2]},
-                                                                <b>Oldest Timestamp:</b> ${data[data_obj][d][c][2]}
+                                                                <b>Oldest Timestamp:</b> ${data[data_obj][d][c][1]}
                                                                 </p>`;
-                console.log(c, data[data_obj][d][c][0], data[data_obj][d][c][1], data[data_obj][d][c][2])
             }
         }
 
